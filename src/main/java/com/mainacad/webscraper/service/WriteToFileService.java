@@ -36,12 +36,12 @@ class WriteToFileService {
 
   private static void writeToCSV(File file, Item item) {
     try (FileWriter fileWriter = new FileWriter(file, Charset.forName("UTF-8"), true)) {
-      fileWriter.write("\"" + item.getName() + "\";");
-      fileWriter.write("\"" + item.getItemId() + "\";");
-      fileWriter.write("\"" + item.getUrl() + "\";");
-      fileWriter.write("\"" + item.getImgURL() + "\";");
-      fileWriter.write("\"" + item.isAvailable() + "\";");
-      fileWriter.write("\"" + item.getPrice() + "\";");
+      fileWriter.write("\"" + item.getName() + "\"\t");
+      fileWriter.write("\"" + item.getItemId() + "\"\t");
+      fileWriter.write("\"" + item.getUrl() + "\"\t");
+      fileWriter.write("\"" + item.getImgURL() + "\"\t");
+      fileWriter.write("\"" + item.isAvailable() + "\"\t");
+      fileWriter.write("\"" + item.getPrice() + "\"\t");
       fileWriter.write("\"" + item.getPriceWithoutDiscount() + "\"\n");
       fileWriter.flush();
     } catch (IOException e) {
