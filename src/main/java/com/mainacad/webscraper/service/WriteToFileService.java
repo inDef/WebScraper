@@ -16,12 +16,12 @@ class WriteToFileService {
     File file = getFilePath(fileName);
     if (fileExtension.equals("csv")) {
       if (!file.exists()) {
-        String header = "\"Name\";"
-            + "\"Item ID\";"
-            + "\"Item page URL\";"
-            + "\"Item IMG URL\";"
-            + "\"Item availability\";"
-            + "\"Item price\";"
+        String header = "\"Name\"\t"
+            + "\"Item ID\"\t"
+            + "\"Item page URL\"\t"
+            + "\"Item IMG URL\"\t"
+            + "\"Item availability\"\t"
+            + "\"Item price\"\t"
             + "\"Item price w/o discount\"\n";
         try (FileWriter fileWriter = new FileWriter(file, false)) {
           fileWriter.write(header);
