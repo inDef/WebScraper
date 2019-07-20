@@ -15,18 +15,33 @@ class WriteToFileService {
     String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);
     File file = getFilePath(fileName);
     if (fileExtension.equals("csv")) {
+      if (!file.exists()) {
+        String header = "\"Name\";"
+            + "\"Item ID\";"
+            + "\"Item page URL\";"
+            + "\"Item IMG URL\";"
+            + "\"Item availability\";"
+            + "\"Item price\";"
+            + "\"Item price w/o discount\"\n";
+        try (FileWriter fileWriter = new FileWriter(file, false)) {
+          fileWriter.write(header);
+          fileWriter.flush();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
       writeToCSV(file, item);
     }
   }
 
   private static void writeToCSV(File file, Item item) {
     try (FileWriter fileWriter = new FileWriter(file, Charset.forName("UTF-8"), true)) {
-      fileWriter.write("\"" + item.getName() + "\",");
-      fileWriter.write("\"" + item.getItemId() + "\",");
-      fileWriter.write("\"" + item.getUrl() + "\",");
-      fileWriter.write("\"" + item.getImgURL() + "\",");
-      fileWriter.write("\"" + item.isAvailable() + "\",");
-      fileWriter.write("\"" + item.getPrice() + "\",");
+      fileWriter.write("\"" + item.getName() + "\";");
+      fileWriter.write("\"" + item.getItemId() + "\";");
+      fileWriter.write("\"" + item.getUrl() + "\";");
+      fileWriter.write("\"" + item.getImgURL() + "\";");
+      fileWriter.write("\"" + item.isAvailable() + "\";");
+      fileWriter.write("\"" + item.getPrice() + "\";");
       fileWriter.write("\"" + item.getPriceWithoutDiscount() + "\"\n");
       fileWriter.flush();
     } catch (IOException e) {

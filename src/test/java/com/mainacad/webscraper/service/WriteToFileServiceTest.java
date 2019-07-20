@@ -26,8 +26,10 @@ class WriteToFileServiceTest {
     int linesBefore = 0;
     int linesAfter = 0;
     File file = WriteToFileService.getFilePath(fileName);
+    int expected = 2;
 
     if (file.exists()) {
+      expected = 1;
       try {
         linesBefore = Files.readAllLines(file.toPath()).size();
       } catch (IOException e) {
@@ -44,6 +46,7 @@ class WriteToFileServiceTest {
       e.printStackTrace();
     }
     logger.info(file.toString());
-    Assertions.assertEquals(1, (linesAfter - linesBefore));
+
+    Assertions.assertEquals(expected, (linesAfter - linesBefore));
   }
 }
