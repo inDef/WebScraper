@@ -82,7 +82,6 @@ public class WebScraperService {
   }
 
   public static ConcurrentLinkedQueue<String> getItemUrls(String itemsPageUrl) {
-
     ConcurrentLinkedQueue<String> urls = new ConcurrentLinkedQueue<>();
     try {
       Document allItemsPage = Jsoup.connect(itemsPageUrl).get();
