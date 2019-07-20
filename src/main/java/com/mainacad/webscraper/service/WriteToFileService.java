@@ -36,7 +36,7 @@ class WriteToFileService {
 
   private static void writeToCSV(File file, Item item) {
     try (FileWriter fileWriter = new FileWriter(file, Charset.forName("UTF-8"), true)) {
-      fileWriter.write("\"" + item.getName().replaceAll(",",".") + "\",");
+      fileWriter.write("\"" + item.getName().replaceAll("[\",]","") + "\",");
       fileWriter.write("\"" + item.getItemId() + "\",");
       fileWriter.write("\"" + item.getUrl() + "\",");
       fileWriter.write("\"" + item.getImgURL() + "\",");
