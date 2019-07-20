@@ -16,12 +16,12 @@ class WriteToFileService {
     File file = getFilePath(fileName);
     if (fileExtension.equals("csv")) {
       if (!file.exists()) {
-        String header = "\"Name\"\t"
-            + "\"Item ID\"\t"
-            + "\"Item page URL\"\t"
-            + "\"Item IMG URL\"\t"
-            + "\"Item availability\"\t"
-            + "\"Item price\"\t"
+        String header = "\"Name\","
+            + "\"Item ID\","
+            + "\"Item page URL\","
+            + "\"Item IMG URL\","
+            + "\"Item availability\","
+            + "\"Item price\","
             + "\"Item price w/o discount\"\n";
         try (FileWriter fileWriter = new FileWriter(file, false)) {
           fileWriter.write(header);
@@ -36,12 +36,12 @@ class WriteToFileService {
 
   private static void writeToCSV(File file, Item item) {
     try (FileWriter fileWriter = new FileWriter(file, Charset.forName("UTF-8"), true)) {
-      fileWriter.write("\"" + item.getName() + "\"\t");
-      fileWriter.write("\"" + item.getItemId() + "\"\t");
-      fileWriter.write("\"" + item.getUrl() + "\"\t");
-      fileWriter.write("\"" + item.getImgURL() + "\"\t");
-      fileWriter.write("\"" + item.isAvailable() + "\"\t");
-      fileWriter.write("\"" + item.getPrice() + "\"\t");
+      fileWriter.write("\"" + item.getName() + "\",");
+      fileWriter.write("\"" + item.getItemId() + "\",");
+      fileWriter.write("\"" + item.getUrl() + "\",");
+      fileWriter.write("\"" + item.getImgURL() + "\",");
+      fileWriter.write("\"" + item.isAvailable() + "\",");
+      fileWriter.write("\"" + item.getPrice() + "\",");
       fileWriter.write("\"" + item.getPriceWithoutDiscount() + "\"\n");
       fileWriter.flush();
     } catch (IOException e) {
